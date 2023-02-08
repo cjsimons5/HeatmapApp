@@ -47,7 +47,7 @@ server <- function(input, output) {
             #heatmap.2 has lines that plot over each box of data, setting trace
             # to none shuts this off so it is easier to visualize the data. Dendrogram
             # set to none to prevent the rearranging of data by Colv and Rowv.
-            # lhei parameter condenses color key histogram plot.
+            # lhei and lwid parameters condense color key histogram plot.
     
     height = 2500
     #Changed height so there would be easier visibility of the difference in the
