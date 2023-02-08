@@ -6,4 +6,4 @@ This shiny app adjusts a heat map of gene read counts based on which samples the
 
 ### How to Run:
 
-The counts file provided is in the folder, so the local reference will run. To start this app, (using an R or RStudio console) use the shiny function `runApp(/path/HeatmapApp/ReadsTask.R)` where path is the file path that leads to the folder HeatmapApp.
+The counts file provided is in the folder, so the local reference will run. To start this app, (using an R or RStudio console) run `library(shiny)` (if not installed, run `install.packages("shiny")`) . Then, use the shiny function `runApp("/path/HeatmapApp/ReadsTask.R")` where path is the file path that leads to the folder HeatmapApp.
