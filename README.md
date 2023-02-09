@@ -2,7 +2,7 @@
 
 ### Functionality:
 
-This shiny app adjusts a heat map of gene read counts based on which samples the user wants to subset. Subsets start with the entire set selected, and users can deselect samples so the subset of interest remains. The heat map was created using the `heatmap.2` function from the `gplots` library. For increased visibility, the gradient goes from white to black where values get increasingly darker given a higher read count at that position.
+This shiny app adjusts a heat map of gene read counts based on which samples the user wants to subset. Subsets start with the entire set selected, and users can deselect samples so the subset of interest remains. The heat map was created using the `heatmap.2` function from the `gplots` library. Thresholds for gene by gene filtering was counts greater than equal to 240 across all 6 samples.
 
 ### How to Run:
 
