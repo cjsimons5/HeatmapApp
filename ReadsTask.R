@@ -48,15 +48,15 @@ server <- function(input, output) {
   cols=colnames(reads)
   output$heat <- renderPlot({
     heatmap.2(data.matrix(reads[,input$subset]), Colv = NA, Rowv = NA,
-              offsetCol = -40, col = heat.colors(max(reads)),
+              offsetCol = -89, col = heat.colors(max(reads)),
             #offsetCol moves the column labels to the top of the plot for increased readability
-              trace = "none", dendrogram = "none", lhei = c(1,5), lwid = c(1,2))},
+              trace = "none", dendrogram = "none", lhei = c(1,10), lwid = c(1,4))},
             #heatmap.2 has lines that plot over each box of data, setting trace
             # to none shuts this off so it is easier to visualize the data. Dendrogram
             # set to none to prevent the rearranging of data by Colv and Rowv.
             # lhei and lwid parameters condense color key histogram plot.
     
-    height = 600
+    height = 1200
     #Changed height so there would be easier visibility of the difference in the
     #bands of the counts
     )
