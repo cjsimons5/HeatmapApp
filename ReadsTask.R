@@ -47,10 +47,10 @@ ui <- fluidPage(
 server <- function(input, output) {
   cols=colnames(reads)
   output$heat <- renderPlot({
-    heatmap.2(data.matrix(reads[,input$subset]), dendrogram = "both", 
+    heatmap.2(data.matrix(reads[,input$subset]), dendrogram = "none",
+              offsetCol = -89, Rowv = F,
               col = redgreen(max(reads)), trace = "none",
               lhei = c(1,10), lwid = c(1,3))},
-            #dendrogram outputs a heirarchical clustering of both genes and samples
             #heatmap.2 has lines that plot over each box of data, setting trace
             # to none shuts this off so it is easier to visualize the data.
             # lhei and lwid parameters condense color key histogram plot.
