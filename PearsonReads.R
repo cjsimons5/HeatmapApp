@@ -14,6 +14,7 @@ for (row in 1:nrow(reads)){
   }
 }
 reads<-reads[filt,]
+reads<-reads/(max(reads))
 
 ## Define UI for app that creates a heatmap of gene read counts, selecting
 ## which subset of samples should be displayed
@@ -55,7 +56,7 @@ server <- function(input, output) {
   output$heat <- renderPlot({
     heatmap.2(data.matrix(reads[,input$subset]), dendrogram = "none",
               Colv = as.dendrogram(samp.clust), Rowv = as.dendrogram(gene.clust),
-              offsetCol = -89, col = redgreen(max(reads)), trace = "none",
+              offsetCol = -89, col = redgreen(2500), trace = "none",
               lhei = c(1,10), lwid = c(1,3))},
     #heatmap.2 has lines that plot over each box of data, setting trace
     # to none shuts this off so it is easier to visualize the data.
