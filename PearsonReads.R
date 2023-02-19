@@ -14,7 +14,7 @@ for (row in 1:nrow(reads)){
   }
 }
 reads<-reads[filt,]
-reads<-reads/(max(reads))
+
 
 ## Define UI for app that creates a heatmap of gene read counts, selecting
 ## which subset of samples should be displayed
@@ -29,7 +29,7 @@ ui <- fluidPage(
       checkboxGroupInput("subset", label = "Sample Selection",
                          choices = list("A"="A","B"="B", "C"="C", "D"="D", "E"="E", "F"="F"),
                          #DEFAULT STARTS WITH ALL SAMPLES SELECTED AS FULL SET
-                         selected = list("A","B","C","D","E","F"))
+                         selected = list("A","B","C","D","E","F")),
     ),
     
     mainPanel(
@@ -48,13 +48,14 @@ ui <- fluidPage(
 server <- function(input, output) {
   cols=colnames(reads)
   
-  samp.cor<-cor(reads, use = "pairwise.complete.obs", method = "pearson")
-  gene.cor<-cor(t(reads), use = "pairwise.complete.obs", method = "pearson")
-  samp.clust<-hclust(as.dist(1-samp.cor))
-  gene.clust<-hclust(as.dist(1-gene.cor))
-  
   output$heat <- renderPlot({
-    heatmap.2(data.matrix(reads[,input$subset]), dendrogram = "none",
+    reads<-reads[,input$subset]
+    reads<-reads/(max(reads))
+    samp.cor<-cor(reads, use = "pairwise.complete.obs", method = "pearson")
+    gene.cor<-cor(t(reads), use = "pairwise.complete.obs", method = "pearson")
+    samp.clust<-hclust(as.dist(1-samp.cor))
+    gene.clust<-hclust(as.dist(1-gene.cor))
+    heatmap.2(data.matrix(reads), dendrogram = "none",
               Colv = as.dendrogram(samp.clust), Rowv = as.dendrogram(gene.clust),
               offsetCol = -89, col = redgreen(2500), trace = "none",
               lhei = c(1,10), lwid = c(1,3))},
